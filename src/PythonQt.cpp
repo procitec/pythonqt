@@ -226,7 +226,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QLineF);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPoint);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPointF);
-    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegExp);
+    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QRegularExpression);
 
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QFont);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPixmap);
@@ -244,7 +244,6 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QPen);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextLength);
     PythonQtRegisterToolClassesTemplateConverterForKnownClass(QTextFormat);
-    PythonQtRegisterToolClassesTemplateConverterForKnownClass(QMatrix);
 
     PyObject* pack = PythonQt::priv()->packageByName("QtCore");
     PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
@@ -2105,7 +2104,9 @@ bool PythonQtPrivate::isMethodDescriptor(PyObject* object) const
 }
 
 // We need this for the dynamic meta object building:
-#include <private/qmetaobjectbuilder_p.h>
+// FIX ME!
+// https://forum.qt.io/topic/115829/how-do-i-include-qmetaobjectbuilder-in-my-qt-5-12-project/3
+#include "6.1.2/QtCore/private/qmetaobjectbuilder_p.h"
 
 const QMetaObject* PythonQtPrivate::getDynamicMetaObject(PythonQtInstanceWrapper* wrapper, const QMetaObject* prototypeMetaObject)
 {

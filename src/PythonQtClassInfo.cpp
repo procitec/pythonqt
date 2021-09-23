@@ -553,7 +553,8 @@ QStringList PythonQtClassInfo::memberList()
     }
   }
 
-  return QSet<QString>::fromList(l).toList();
+  QSet<QString> set(l.constBegin(), l.constEnd());
+  return QList<QString>(set.constBegin(), set.constEnd());
 }
 
 const QByteArray& PythonQtClassInfo::className() const

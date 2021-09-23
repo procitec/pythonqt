@@ -1482,7 +1482,7 @@ PyObject* PythonQtConv::createCopyFromMetaType( int type, const void* data )
 
 PyObject* PythonQtConv::convertFromStringRef(const void* inObject, int /*metaTypeId*/)
 {
-  return PythonQtConv::QStringToPyObject(((QStringRef*)inObject)->toString());
+  return PythonQtConv::QStringToPyObject(((QStringView*)inObject)->toString());
 }
 
 QByteArray PythonQtConv::getCPPTypeName(PyObject* type)

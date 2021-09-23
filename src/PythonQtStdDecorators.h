@@ -82,7 +82,7 @@ public Q_SLOTS:
   const QObjectList* children(QObject* o);
   QObject* findChild(QObject* parent, PyObject* type, const QString& name = QString());
   QList<QObject*> findChildren(QObject* parent, PyObject* type, const QString& name= QString());
-  QList<QObject*> findChildren(QObject* parent, PyObject* type, const QRegExp& regExp);
+  QList<QObject*> findChildren(QObject* parent, PyObject* type, const QRegularExpression& regExp);
 
   bool setProperty(QObject* o, const char* name, const QVariant& value);
   QVariant property(QObject* o, const char* name);
@@ -116,7 +116,7 @@ public Q_SLOTS:
 private:
   QObject* findChild(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name);
   int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QString& name, QList<QObject*>& list);
-  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QRegExp& regExp, QList<QObject*>& list);
+  int findChildren(QObject* parent, const char* typeName, const QMetaObject* meta, const QRegularExpression& regExp, QList<QObject*>& list);
 };
 
 class PythonQtSingleShotTimer : public QTimer

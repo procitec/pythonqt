@@ -54,7 +54,7 @@
 #include <QLineF>
 #include <QPoint>
 #include <QPointF>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include <QFont>
 #include <QBitmap>
@@ -67,12 +67,10 @@
 #include <QRegion>
 #include <QBitmap>
 #include <QCursor>
-#include <QSizePolicy>
 #include <QKeySequence>
 #include <QPen>
 #include <QTextLength>
 #include <QTextFormat>
-#include <QMatrix>
 
 #endif
 

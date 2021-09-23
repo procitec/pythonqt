@@ -40,7 +40,7 @@
 #include <qpixmap.h>
 #include <qpoint.h>
 #include <qrect.h>
-#include <qregexp.h>
+#include <qregularexpression.h>
 #include <qregion.h>
 #include <qscreen.h>
 #include <qscrollarea.h>
