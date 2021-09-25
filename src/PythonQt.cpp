@@ -109,7 +109,7 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
     } else {
       qRegisterMetaType<quint32>("size_t");
     }
-    int stringRefId = qRegisterMetaType<QStringRef>("QStringRef");
+    int stringRefId = qRegisterMetaType<QStringView>("QStringView");
     PythonQtConv::registerMetaTypeToPythonConverter(stringRefId, PythonQtConv::convertFromStringRef);
 
     int objectPtrListId = qRegisterMetaType<QList<PythonQtObjectPtr> >("QList<PythonQtObjectPtr>");
@@ -2106,7 +2106,7 @@ bool PythonQtPrivate::isMethodDescriptor(PyObject* object) const
 // We need this for the dynamic meta object building:
 // FIX ME!
 // https://forum.qt.io/topic/115829/how-do-i-include-qmetaobjectbuilder-in-my-qt-5-12-project/3
-#include "6.1.2/QtCore/private/qmetaobjectbuilder_p.h"
+#include <private/qmetaobjectbuilder_p.h>
 
 const QMetaObject* PythonQtPrivate::getDynamicMetaObject(PythonQtInstanceWrapper* wrapper, const QMetaObject* prototypeMetaObject)
 {

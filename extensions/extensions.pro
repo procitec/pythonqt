@@ -1,2 +1,3 @@
 TEMPLATE = subdirs
-SUBDIRS = PythonQt_QtAll
+# SUBDIRS = PythonQt_QtAll
+SUBDIRS = 
