@@ -49,6 +49,7 @@
 #include "PythonQtMethodInfo.h"
 
 #include <QList>
+#include <QSizePolicy>
 #include <vector>
 
 typedef PyObject* PythonQtConvertMetaTypeToPythonCB(const void* inObject, int metaTypeId);
