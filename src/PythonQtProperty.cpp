@@ -151,7 +151,7 @@ PyObject* PythonQtProperty_getter(PyObject* object, PyObject* func)
   }
 }
 
-PyObject* PythonQtProperty_call(PyObject* object, PyObject* args, PyObject* kw)
+PyObject* PythonQtProperty_call(PyObject* object, PyObject* args, PyObject* )
 {
   if (PyTuple_Size(args) == 1) {
     PyObject *func = PyTuple_GetItem(args, 0);

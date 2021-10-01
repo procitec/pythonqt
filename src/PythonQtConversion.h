@@ -335,8 +335,8 @@ PyObject* PythonQtConvertPairToPython(const void* /*QPair<T1,T2>* */ inPair, int
   if (innerType1==-1) {
     QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType(metaTypeId).name()));
     QList<QByteArray> names = innerTypes.split(',');
-    innerType1 = QMetaType::type(names.at(0).trimmed());
-    innerType2 = QMetaType::type(names.at(1).trimmed());
+      innerType1 = QMetaType::fromName(names.at(0).trimmed()).id();
+      innerType2 = QMetaType::fromName(names.at(1).trimmed()).id();
   }
   if (innerType1 == QVariant::Invalid || innerType2 == QVariant::Invalid) {
     std::cerr << "PythonQtConvertPairToPython: unknown inner type " << QMetaType(metaTypeId).name() << std::endl;
@@ -356,8 +356,8 @@ bool PythonQtConvertPythonToPair(PyObject* obj, void* /*QPair<T1,T2>* */ outPair
   if (innerType1 == -1) {
     QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType(metaTypeId).name()));
     QList<QByteArray> names = innerTypes.split(',');
-    innerType1 = QMetaType::type(names.at(0).trimmed());
-    innerType2 = QMetaType::type(names.at(1).trimmed());
+    innerType1 = QMetaType::fromName(names.at(0).trimmed()).id();
+    innerType2 = QMetaType::fromName(names.at(1).trimmed()).id();
   }
   if (innerType1 == QVariant::Invalid || innerType2 == QVariant::Invalid) {
     std::cerr << "PythonQtConvertPythonToPair: unknown inner type " << QMetaType(metaTypeId).name() << std::endl;
@@ -455,7 +455,7 @@ PyObject* PythonQtConvertIntegerMapToPython(const void* /*QMap<int, T>* */ inMap
   if (innerType == -1) {
     QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType(metaTypeId).name()));
     QList<QByteArray> names = innerTypes.split(',');
-    innerType = QMetaType::type(names.at(1).trimmed());
+    innerType = QMetaType::fromName(names.at(1).trimmed()).id();
   }
   if (innerType == QVariant::Invalid) {
     std::cerr << "PythonQtConvertIntegerMapToPython: unknown inner type " << QMetaType(metaTypeId).name() << std::endl;
@@ -483,7 +483,7 @@ bool PythonQtConvertPythonToIntegerMap(PyObject* val, void* /*QMap<int, T>* */ o
   if (innerType == -1) {
     QByteArray innerTypes = PythonQtMethodInfo::getInnerTemplateTypeName(QByteArray(QMetaType(metaTypeId).name()));
     QList<QByteArray> names = innerTypes.split(',');
-    innerType = QMetaType::type(names.at(1).trimmed());
+    innerType = QMetaType::fromName(names.at(1).trimmed()).id();
   }
   if (innerType == QVariant::Invalid) {
     std::cerr << "PythonQtConvertPythonToIntegerMap: unknown inner type " << QMetaType(metaTypeId).name() << std::endl;
