@@ -1483,7 +1483,7 @@ void PythonQtPrivate::setupSharedLibrarySuffixes()
   _sharedLibrarySuffixes << "_d.so";
   #endif
 #endif
-  Q_FOREACH (QVariant entry, result.toList()) {
+  for (const auto& entry: result.toList()) {
     QVariantList suffixEntry = entry.toList();
     if (suffixEntry.count()==3) {
       int code = suffixEntry.at(2).toInt();
@@ -1552,7 +1552,7 @@ void PythonQtPrivate::addDecorators(QObject* o, int decoTypes)
 
 void PythonQtPrivate::registerQObjectClassNames(const QStringList& names)
 {
-  Q_FOREACH(QString name, names) {
+  for(const auto& name: names) {
     _knownQObjectClassNames.insert(name.toUtf8(), true);
   }
 }

@@ -226,7 +226,7 @@ PyObject* PythonQtConvertListOfValueTypeToPythonList(const void* /*QList<T>* */ 
   }
   PyObject* result = PyTuple_New(list->size());
   int i = 0;
-  Q_FOREACH (const T& value, *list) {
+  for (const T& value: *list) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::convertQtValueToPythonInternal(innerType, &value));
     i++;
   }

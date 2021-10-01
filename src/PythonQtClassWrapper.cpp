@@ -471,7 +471,7 @@ static PyObject *PythonQtClassWrapper_getattro(PyObject *obj, PyObject *name)
     QSet<QString> completeSet = QSet<QString>(memberList.constBegin(), memberList.constEnd());
     completeSet.unite(QSet<QString>(propertyList.constBegin(), propertyList.constEnd()));
 
-    Q_FOREACH (QString name, completeSet) {
+    for (const auto&  name: completeSet) {
       if (name.startsWith("py_")) {
         // do not expose internal slots
         continue;

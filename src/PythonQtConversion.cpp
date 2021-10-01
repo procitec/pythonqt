@@ -254,7 +254,7 @@ PyObject* PythonQtConv::convertQtValueToPythonInternal(int type, const void* dat
      default:
        // check if we have a QList of pointers, which we can circumvent with a QList<void*>
        if (info.isQList && (info.innerNamePointerCount == 1)) {
-         static int id = QMetaType::type("QList<void*>");
+         static int id = QMetaType::fromName("QList<void*>").id();
          PythonQtArgumentFrame_ADD_VARIANT_VALUE(frame, QVariant::Type(id), ptr);
          // return the constData pointer that will be filled with the result value later on
          ptr = (void*)((QVariant*)ptr)->constData();
@@ -295,10 +295,10 @@ void* PythonQtConv::handlePythonToQtAutoConversion(int typeId, PyObject* obj, vo
 {
   void* ptr = alreadyAllocatedCPPObject;
 
-  static int penId = QMetaType::type("QPen");
-  static int brushId = QMetaType::type("QBrush");
-  static int cursorId = QMetaType::type("QCursor");
-  static int colorId = QMetaType::type("QColor");
+  static int penId = QMetaType::fromName("QPen").id();
+  static int brushId = QMetaType::fromName("QBrush").id();
+  static int cursorId = QMetaType::fromName("QCursor").id();
+  static int colorId = QMetaType::fromName("QColor").id();
   static PyObject* qtGlobalColorEnum = PythonQtClassInfo::findEnumWrapper("Qt::GlobalColor", NULL);
   if (typeId == cursorId) {
     static PyObject* qtCursorShapeEnum = PythonQtClassInfo::findEnumWrapper("Qt::CursorShape", NULL);
@@ -649,7 +649,7 @@ void* PythonQtConv::ConvertPythonToQt(const PythonQtMethodInfo::ParameterInfo& i
          if (info.typeId == PythonQtMethodInfo::Unknown || info.typeId >= QMetaType::User) {
            // check for QList<AnyPtr*> case, where we will use a QList<void*> QVariant
            if (info.isQList && (info.innerNamePointerCount == 1)) {
-             static int id = QMetaType::type("QList<void*>");
+             static int id = QMetaType::fromName("QList<void*>").id();
              if (!alreadyAllocatedCPPObject) {
                PythonQtArgumentFrame_ADD_VARIANT_VALUE_IF_NEEDED(alreadyAllocatedCPPObject, frame, QVariant::Type(id), ptr);
                ptr = (void*)((QVariant*)ptr)->constData();
@@ -1249,7 +1249,7 @@ PyObject* PythonQtConv::QStringListToPyObject(const QStringList& list)
   PyObject* result = PyTuple_New(list.count());
   int i = 0;
   QString str;
-  Q_FOREACH (str, list) {
+  for (const auto str: list) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::QStringToPyObject(str));
     i++;
   }
@@ -1315,8 +1315,7 @@ PyObject* PythonQtConv::QVariantHashToPyObject(const QVariantHash& m) {
 PyObject* PythonQtConv::QVariantListToPyObject(const QVariantList& l) {
   PyObject* result = PyTuple_New(l.count());
   int i = 0;
-  QVariant v;
-  Q_FOREACH (v, l) {
+  for (const auto v: l) {
     PyTuple_SET_ITEM(result, i, PythonQtConv::QVariantToPyObject(v));
     i++;
   }
@@ -1329,7 +1328,7 @@ PyObject* PythonQtConv::ConvertQListOfPointerTypeToPythonList(QList<void*>* list
 {
   PyObject* result = PyTuple_New(list->count());
   int i = 0;
-  Q_FOREACH (void* value, *list) {
+  for (void* value: *list) {
     PyObject* wrap = PythonQt::priv()->wrapPtr(value, info.innerName);
     if (wrap) {
       PythonQtInstanceWrapper* wrapper = (PythonQtInstanceWrapper*)wrap;
