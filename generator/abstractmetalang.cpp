@@ -972,7 +972,7 @@ AbstractMetaFunctionList AbstractMetaClass::virtualOverrideFunctions() const
 
 void AbstractMetaClass::sortFunctions()
 {
-    qSort(m_functions.begin(), m_functions.end(), function_sorter);
+    std::stable_sort(m_functions.begin(), m_functions.end(), function_sorter);
 }
 
 void AbstractMetaClass::setFunctions(const AbstractMetaFunctionList &functions)
@@ -1090,7 +1090,7 @@ void AbstractMetaClass::addFunction(AbstractMetaFunction *function)
     if (!function->isDestructor()) {
         m_functions << function;
         // seems like this is not needed and takes a lot of performance
-        //qSort(m_functions.begin(), m_functions.end(), function_sorter);
+        //std::stable_sort(m_functions.begin(), m_functions.end(), function_sorter);
     }
 
 

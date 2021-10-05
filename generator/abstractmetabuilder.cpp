@@ -54,7 +54,6 @@
 #include <QtCore/QDebug>
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
-#include <QtCore/QTextCodec>
 #include <QtCore/QTextStream>
 #include <QtCore/QVariant>
 
@@ -384,7 +383,7 @@ static bool class_less_than(AbstractMetaClass *a, AbstractMetaClass *b)
 
 void AbstractMetaBuilder::sortLists()
 {
-   qSort(m_meta_classes.begin(), m_meta_classes.end(), class_less_than);
+   std::stable_sort(m_meta_classes.begin(), m_meta_classes.end(), class_less_than);
    foreach (AbstractMetaClass *cls, m_meta_classes) {
         cls->sortFunctions();
    }
@@ -399,8 +398,8 @@ bool AbstractMetaBuilder::build()
     if (!file.open(QFile::ReadOnly))
         return false;
 
+    // default codec is utf-8
     QTextStream stream(&file);
-    stream.setCodec(QTextCodec::codecForName("UTF-8"));
     QByteArray contents = stream.readAll().toUtf8();
     file.close();
 
@@ -969,7 +968,7 @@ AbstractMetaEnum *AbstractMetaBuilder::traverseEnum(EnumModelItem enum_item, Abs
         meta_enum->addEnumValue(meta_enum_value);
 
         ReportHandler::debugFull("   - " + meta_enum_value->name() + " = "
-                                 + meta_enum_value->value());
+                                 + QChar(meta_enum_value->value()));
 
         // Add into global register...
         if (enclosing)
@@ -1438,7 +1437,7 @@ void AbstractMetaBuilder::traverseEnums(ScopeModelItem scope_item, AbstractMetaC
 {
     EnumList enums = scope_item->enums();
     foreach (EnumModelItem enum_item, enums) {
-        AbstractMetaEnum *meta_enum = traverseEnum(enum_item, meta_class, QSet<QString>::fromList(enumsDeclarations));
+        AbstractMetaEnum *meta_enum = traverseEnum(enum_item, meta_class, QSet<QString>(enumsDeclarations.constBegin(), enumsDeclarations.constEnd()));
         if (meta_enum) {
             meta_enum->setOriginalAttributes(meta_enum->attributes());
             meta_class->addEnum(meta_enum);
@@ -2393,7 +2392,7 @@ static void write_reject_log_file(const QString &name, const QString &tagName,
 
 
     for (int reason=0; reason<AbstractMetaBuilder::NoReason; ++reason) {
-        s << QString(72, '*') << endl;
+        s << QString(72, '*') << Qt::endl;
         switch (reason) {
         case AbstractMetaBuilder::NotInTypeSystem:
             s << "Not in type system";
@@ -2418,21 +2417,21 @@ static void write_reject_log_file(const QString &name, const QString &tagName,
             break;
         }
 
-        s << endl;
+        s << Qt::endl;
 
         for (QMap<QString, AbstractMetaBuilder::RejectReason>::const_iterator it = rejects.constBegin();
              it != rejects.constEnd(); ++it) {
             if (it.value() != reason)
                 continue;
             if (tagName.isEmpty()) {
-              s << it.key() << endl;
+              s << it.key() << Qt::endl;
             } else {
-              s << "<" << tagName << " name=\"" << it.key() << "\"/>" << endl;
-//              s << "<rejection class=\"" << it.key() << "\"/>" << endl;
+              s << "<" << tagName << " name=\"" << it.key() << "\"/>" << Qt::endl;
+//              s << "<rejection class=\"" << it.key() << "\"/>" << Qt::endl;
             }
         }
 
-        s << QString(72, '*') << endl << endl;
+        s << QString(72, '*') << Qt::endl << Qt::endl;
     }
 
 }
@@ -2451,7 +2450,7 @@ AbstractMetaClassList AbstractMetaBuilder::classesTopologicalSorted() const
     AbstractMetaClassList res;
 
     AbstractMetaClassList classes = m_meta_classes;
-    qSort(classes);
+    std::stable_sort(classes.begin(), classes.end());
 
     QSet<AbstractMetaClass*> noDependency;
     QHash<AbstractMetaClass*, QSet<AbstractMetaClass* >* > hash;

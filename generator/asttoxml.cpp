@@ -47,7 +47,6 @@
 
 #include <QXmlStreamWriter>
 #include <QTextStream>
-#include <QTextCodec>
 #include <QFile>
 
 void astToXML(QString name) {
@@ -56,8 +55,8 @@ void astToXML(QString name) {
     if (!file.open(QFile::ReadOnly))
         return;
 
+    // default converter is UTF-8
     QTextStream stream(&file);
-    stream.setCodec(QTextCodec::codecForName("UTF-8"));
     QByteArray contents = stream.readAll().toUtf8();
     file.close();
 
@@ -164,7 +163,7 @@ void writeOutClass(QXmlStreamWriter &s, ClassModelItem &item) {
         writeOutEnum(s, enumItem);
     }
 
-    QHash<QString, FunctionModelItem> functionMap = item->functionMap();
+    QMultiHash<QString, FunctionModelItem> functionMap = item->functionMap();
     foreach (FunctionModelItem funcItem, functionMap.values()) {
         writeOutFunction(s, funcItem);
     }

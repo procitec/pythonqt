@@ -319,8 +319,8 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
     | AbstractMetaClass::NotRemovedFromTargetLang | AbstractMetaClass::ClassImplements
     );
-  QSet<AbstractMetaFunction*> set1 = QSet<AbstractMetaFunction*>::fromList(functions);
-  foreach(AbstractMetaFunction* func, functions2) {
+  QSet<AbstractMetaFunction*> set1 = QSet<AbstractMetaFunction*>(functions.begin(), functions.end());
+  for(AbstractMetaFunction* func: functions2) {
     set1.insert(func);
   }
 
@@ -328,14 +328,14 @@ AbstractMetaFunctionList ShellGenerator::getFunctionsToWrap(const AbstractMetaCl
 
   bool hasPromoter = meta_class->typeEntry()->shouldCreatePromoter();
 
-  foreach(AbstractMetaFunction* func, set1.toList()) {
+  for(AbstractMetaFunction* func: set1) {
     if (func->implementingClass()==meta_class) {
       if (hasPromoter || func->wasPublic()) {
         resultFunctions << func;
       }
     }
   }
-  qSort(resultFunctions.begin(), resultFunctions.end(), function_sorter);
+  std::stable_sort(resultFunctions.begin(), resultFunctions.end(), function_sorter);
   return resultFunctions;
 }
 
@@ -345,7 +345,7 @@ AbstractMetaFunctionList ShellGenerator::getVirtualFunctionsForShell(const Abstr
     AbstractMetaClass::VirtualFunctions | AbstractMetaClass::WasVisible
         | AbstractMetaClass::NotRemovedFromTargetLang
     );
-  qSort(functions.begin(), functions.end(), function_sorter);
+  std::stable_sort(functions.begin(), functions.end(), function_sorter);
   return functions;
 }
 
@@ -358,7 +358,7 @@ AbstractMetaFunctionList ShellGenerator::getProtectedFunctionsThatNeedPromotion(
       functions << func;
     }
   }
-  qSort(functions.begin(), functions.end(), function_sorter);
+  std::stable_sort(functions.begin(), functions.end(), function_sorter);
   return functions;
 }
 
@@ -381,7 +381,7 @@ void ShellGenerator::writeInclude(QTextStream &stream, const Include &inc)
     stream << ">";
   else
     stream << "\"";
-  stream << endl;
+  stream << Qt::endl;
 }
 
 /*!
