@@ -37,7 +37,6 @@ HEADERS += \
         $$GENERATORPATH/abstractmetabuilder.h \
         $$GENERATORPATH/abstractmetalang.h \
         $$GENERATORPATH/prigenerator.h \
-        $$GENERATORPATH/xmlparser.h \
 
 
 
@@ -56,7 +55,6 @@ SOURCES += \
         $$GENERATORPATH/abstractmetabuilder.cpp \
         $$GENERATORPATH/abstractmetalang.cpp \
         $$GENERATORPATH/prigenerator.cpp \
-        $$GENERATORPATH/xmlparser.cpp \
 
 
    
