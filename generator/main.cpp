@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
 
     printf("Parsing typesystem file [%s]\n", qPrintable(typesystemFileName));
     if (!TypeDatabase::instance()->parseFile(typesystemFileName))
-        qFatal("Cannot parse file: '%s'", qPrintable(typesystemFileName));
+        qWarning("warnings while parsing file: '%s'", qPrintable(typesystemFileName));
 
     printf("PreProcessing - Generate [%s] using [%s] and include-paths [%s]\n",
       qPrintable(pp_file), qPrintable(fileName), qPrintable(args.value("include-paths")));
