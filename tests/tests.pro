@@ -10,7 +10,7 @@ DESTDIR    = ../lib
 
 QT += testlib opengl
 
-contains(QT_MAJOR_VERSION, 5) {
+contains(QT_MAJOR_VERSION, 6) {
   QT += widgets
 }
 
