@@ -8,7 +8,8 @@ TEMPLATE = app
 
 DESTDIR    = ../lib
 
-QT += testlib opengl
+QT += testlib
+# QT += testlib opengl
 
 contains(QT_MAJOR_VERSION, 6) {
   QT += widgets

@@ -162,7 +162,7 @@ public:
 
   virtual QDateTime lastModifiedDate(const QString& filename);
   
-  virtual bool isEggArchive(const QString& filename) { return false; }
+  virtual bool isEggArchive(const QString& ) { return false; }
 
 public Q_SLOTS:
 
