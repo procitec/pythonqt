@@ -41,7 +41,6 @@
 
 #include "typesystem.h"
 #include "generator.h"
-#include "xmlparser.h"
 
 #include "customtypes.h"
 
