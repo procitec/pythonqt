@@ -247,19 +247,21 @@ void PythonQt::init(int flags, const QByteArray& pythonQtModuleName)
 
     PyObject* pack = PythonQt::priv()->packageByName("QtCore");
     PyObject* pack2 = PythonQt::priv()->packageByName("Qt");
-    PyObject* qtNamespace = PythonQt::priv()->getClassInfo("Qt")->pythonQtClassWrapper();
-    const char* names[16] = {"SIGNAL", "SLOT", "qAbs", "qBound","qDebug","qWarning","qCritical","qFatal"
-                        ,"qFuzzyCompare", "qMax","qMin","qRound","qRound64","qVersion","qrand","qsrand"};
-    for (unsigned int i = 0;i<16; i++) {
-      PyObject* obj = PyObject_GetAttrString(qtNamespace, names[i]);
-      if (obj) {
-        PyModule_AddObject_DECREF(pack, names[i], obj);
-        Py_INCREF(obj);
-        PyModule_AddObject_DECREF(pack2, names[i], obj);
-      } else {
-        std::cerr << "method not found " << names[i] << std::endl;
-      }
-    }
+
+    // This namespace is added by pythonqt_all
+//    PyObject* qtNamespace = PythonQt::priv()->getClassInfo("Qt")->pythonQtClassWrapper();
+//    const char* names[16] = {"SIGNAL", "SLOT", "qAbs", "qBound","qDebug","qWarning","qCritical","qFatal"
+//                        ,"qFuzzyCompare", "qMax","qMin","qRound","qRound64","qVersion","qrand","qsrand"};
+//    for (unsigned int i = 0;i<16; i++) {
+//      PyObject* obj = PyObject_GetAttrString(qtNamespace, names[i]);
+//      if (obj) {
+//        PyModule_AddObject_DECREF(pack, names[i], obj);
+//        Py_INCREF(obj);
+//        PyModule_AddObject_DECREF(pack2, names[i], obj);
+//      } else {
+//        std::cerr << "method not found " << names[i] << std::endl;
+//      }
+//    }
     int enumValues[] = {
       QtDebugMsg,
       QtWarningMsg,
