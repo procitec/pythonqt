@@ -16,9 +16,11 @@ include ( ../build/PythonQt.prf )
 
 SOURCES +=      \
   main.cpp	\
-  gui.cpp        
+  pyobjects.cpp	\
+  gui.cpp
 
 HEADERS +=	\
+  pyobjects.h	\
   gui.h
  
 FORMS = GuiTest.ui
