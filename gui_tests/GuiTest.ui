@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
-    <height>793</height>
+    <width>832</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,6 +18,24 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout">
+    <property name="horizontalSpacing">
+     <number>4</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>4</number>
+    </property>
+    <property name="leftMargin">
+     <number>4</number>
+    </property>
+    <property name="topMargin">
+     <number>4</number>
+    </property>
+    <property name="rightMargin">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
+     <number>4</number>
+    </property>
     <item row="0" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="topMargin">
@@ -25,9 +43,19 @@
       </property>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>4</number>
+        </property>
         <property name="rightMargin">
          <number>0</number>
         </property>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Switch context:</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QComboBox" name="cb_context"/>
         </item>
@@ -47,7 +75,30 @@
        </layout>
       </item>
       <item>
-       <widget class="QPlainTextEdit" name="ctx_description"/>
+       <widget class="QPlainTextEdit" name="ctx_description">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <family>FreeMono</family>
+          <italic>true</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -60,13 +111,27 @@
     </item>
     <item row="2" column="1">
      <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
       <property name="text">
        <string>Editor</string>
       </property>
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QPlainTextEdit" name="editor"/>
+     <widget class="QPlainTextEdit" name="editor">
+      <property name="font">
+       <font>
+        <family>FreeMono</family>
+       </font>
+      </property>
+     </widget>
     </item>
     <item row="4" column="1">
      <widget class="Line" name="line_2">
@@ -84,6 +149,9 @@
     </item>
     <item row="7" column="1">
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>4</number>
+      </property>
       <property name="topMargin">
        <number>0</number>
       </property>
@@ -141,17 +209,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>779</width>
+     <width>832</width>
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuLoad_file">
-    <property name="title">
-     <string>Load </string>
-    </property>
-    <addaction name="actionLoad_file"/>
-   </widget>
-   <addaction name="menuLoad_file"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionLoad_file">

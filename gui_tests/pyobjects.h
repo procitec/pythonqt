@@ -26,6 +26,7 @@ public:
 public slots:
     void clear_output();
     void reset_color();
+    FileHandler* create_filehandle(const QString& filename);
 
 private:
     Gui* mp_GUI;

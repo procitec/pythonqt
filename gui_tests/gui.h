@@ -2,6 +2,7 @@
 
 #include "ui_GuiTest.h"
 #include "PythonQt.h"
+#include "filecreatorwrapper.h"
 #include <QMainWindow>
 
 class PyGUI;
@@ -26,4 +27,5 @@ public slots:
 private:
     PyGUI* mp_pygui;
     PyMeta* mp_meta;
+    FileHandlerFactory* mp_filehandler_factory;
 };

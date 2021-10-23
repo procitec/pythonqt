@@ -27,3 +27,7 @@ void PyMeta::clear_output() {
 void PyMeta::reset_color() {
     mp_GUI->setStyleSheet("QMainWindow {}");
 }
+
+FileHandler *PyMeta::create_filehandle(const QString &filename) {
+    return new FileHandler(filename);
+}
