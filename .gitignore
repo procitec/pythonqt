@@ -78,6 +78,7 @@ Thumbs.db
 
 # vim
 *~
+*.swp
 
 # Visual Studio Code
 .vscode/*
@@ -88,3 +89,6 @@ doxygen.log
 
 # Backup files
 *.bak
+
+# clion
+.idea
