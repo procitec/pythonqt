@@ -12,7 +12,7 @@ DESTDIR           = ../../lib
 include ( ../../build/common.prf )  
 include ( ../../build/PythonQt.prf )  
   
-contains(QT_MAJOR_VERSION, 6) {
+greaterThan(QT_MAJOR_VERSION, 4) {
   QT += widgets
 }
 

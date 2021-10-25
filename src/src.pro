@@ -4,7 +4,7 @@
 # $Source$
 # --------------------------------------------------
 
-TARGET   = PythonQt-Qt6-PythonXY
+TARGET   = PythonQt-Qt$${QT_MAJOR_VERSION}-PythonXY
 TEMPLATE = lib
 
 
@@ -24,7 +24,7 @@ isEmpty(PYTHONQT_STATIC) {
 
 DEFINES += PYTHONQT_CATCH_ALL_EXCEPTIONS
 
-contains(QT_MAJOR_VERSION, 6) {
+greaterThan(QT_MAJOR_VERSION, 4) {
   QT += widgets core-private
 }
 
@@ -39,8 +39,11 @@ TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 
 include ( src.pri )  
 
-# include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
-# include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
+
+equals(QT_MAJOR_VERSION, 5) {
+  include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
+  include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
+}
 
 unix {
   CONFIG += create_pc create_prl no_install_prl
@@ -49,7 +52,7 @@ unix {
   QMAKE_PKGCONFIG_PREFIX = $$INSTALLBASE
   QMAKE_PKGCONFIG_LIBDIR = $$target.path
   QMAKE_PKGCONFIG_INCDIR = $$headers.path
-  QMAKE_PKGCONFIG_INCDIR += $$PREFIX/include/PythonQt5
+  QMAKE_PKGCONFIG_INCDIR += $$PREFIX/include/PythonQt$${QT_MAJOR_VERSION}
   QMAKE_PKGCONFIG_VERSION = $$VERSION
 }
 

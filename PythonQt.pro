@@ -1,5 +1,12 @@
 TEMPLATE = subdirs
 
+CONFIG += debug
+
 CONFIG += ordered
-# SUBDIRS = generator src extensions tests examples
-SUBDIRS = src tests examples
+
+equals(QT_MAJOR_VERSION, 6) {
+    message( "Qt6 build detected")
+    DEFINES += "QT6_BUILD"
+}
+
+SUBDIRS = generator src extensions tests examples

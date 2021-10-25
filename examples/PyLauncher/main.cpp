@@ -40,7 +40,6 @@
 //----------------------------------------------------------------------------------
 
 #include "PythonQt.h"
-#include "PythonQt_QtAll.h"
 #include "gui/PythonQtScriptingConsole.h"
 
 #include <QApplication>
@@ -53,7 +52,6 @@ int main( int argc, char **argv )
   QApplication qapp(argc, argv);
 
   PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
-  PythonQt_QtAll::init();
 
   PythonQtObjectPtr  mainContext = PythonQt::self()->getMainModule();
 

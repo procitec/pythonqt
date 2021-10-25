@@ -3,7 +3,10 @@ SUBDIRS = CPPPyWrapperExample \
           PyGettingStarted \
           PyCPPWrapperExample \
           PyCustomMetaTypeExample \
-          PyGuiExample \
-          PyDecoratorsExample \
-          PyScriptingConsole \
-          PyLauncher
+          PyLauncher \
+
+lessThan(QT_MAJOR_VERSION, 6) {
+  SUBDIRS += PyScriptingConsole \
+  SUBDIRS += PyDecoratorsExample \
+  SUBDIRS += PyGuiExample \
+}
