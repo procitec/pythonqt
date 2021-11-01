@@ -69,9 +69,6 @@ private Q_SLOTS:
   void testVariables();
   void testRedirect();
   void testImporter();
-  void testQColorDecorators();
-  void testQtNamespace();
-  void testConnects();
 
   void testProperties();
   void testDynamicProperties();
@@ -318,18 +315,12 @@ private Q_SLOTS:
 
   void testNoArgSlotCall();
   void testPODSlotCalls();
-  void testCPPSlotCalls();
-  void testQVariantSlotCalls();
-  void testQListSlotCalls();
-  void testQMapSlotCalls();
   void testObjectSlotCalls();
-  void testMultiArgsSlotCall();
   void testPyObjectSlotCall();
   void testOverloadedCall();
   void testKeywordCall();
   void testCppFactory();
   void testInheritance();
-  void testAutoConversion();
   void testProperties();
 
 private:
@@ -488,11 +479,8 @@ public Q_SLOTS:
   PythonQtTestSlotCallingHelper* getTestObject(PythonQtTestSlotCallingHelper* obj) {  _called = true; return obj; }
   //! testing inheritance checking
   QObject* getQObject(QObject* obj) { _called = true; return obj; }
-  QWidget* getQWidget(QWidget* obj) { _called = true; return obj; }
   //! testing if an object that was not wrapped is wrapped earlier is wrapped correctly
   QObject* getNewObject() { _called = true; return new PythonQtTestSlotCallingHelper(NULL); }
-
-  QVariantList getMultiArgs(int a, double b, const QString& str) { _called = true; return (QVariantList() << a << b << str); }
 
   //! cpp wrapper factory test
   PQCppObject* createPQCppObject(int h) { _called = true; return new PQCppObject(h); }
