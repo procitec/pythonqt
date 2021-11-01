@@ -11,6 +11,6 @@ CONFIG(debug, debug|release) {
   DEBUG_EXT = 
 }
 
-win32-g++: LIBS += $$DESTDIR/../lib/PythonQt-Qt6-Python$${PYTHON_VERSION}$${DEBUG_EXT}.dll
-win32-msvc*: LIBS += $$DESTDIR/../lib/PythonQt-Qt6-Python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
-unix: LIBS += -L$$DESTDIR/../lib -lPythonQt-Qt6-Python$${PYTHON_VERSION}$${DEBUG_EXT}
+win32-g++: LIBS += $$DESTDIR/../lib/PythonQt-Qt$${QT_MAJOR_VERSION}-Python$${PYTHON_VERSION}$${DEBUG_EXT}.dll
+win32-msvc*: LIBS += $$DESTDIR/../lib/PythonQt-Qt$${QT_MAJOR_VERSION}-Python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
+unix: LIBS += -L$$DESTDIR/../lib -lPythonQt-Qt$${QT_MAJOR_VERSION}-Python$${PYTHON_VERSION}$${DEBUG_EXT}
