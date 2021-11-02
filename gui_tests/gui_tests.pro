@@ -1,8 +1,6 @@
 TARGET   = GuiTest
 TEMPLATE = app
 
-CONFIG += debug
-
 mac:CONFIG -= app_bundle
 
 DESTDIR = ../lib

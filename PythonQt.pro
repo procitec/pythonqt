@@ -9,4 +9,8 @@ equals(QT_MAJOR_VERSION, 6) {
     DEFINES += "QT6_BUILD"
 }
 
-SUBDIRS = generator src extensions tests examples
+lessThan(QT_MAJOR_VERSION, 6) {
+    error("Qt6 or higher required")
+}
+
+SUBDIRS = generator src extensions tests examples gui_tests
