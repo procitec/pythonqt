@@ -16,6 +16,9 @@ public:
   explicit Gui();
   ~Gui();
 
+  void switch_to_meta_ctx();
+  void execute(const QString& content);
+
 public slots:
   void on_red_clicked();
   void on_green_clicked();

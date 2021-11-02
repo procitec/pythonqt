@@ -46,6 +46,11 @@ Gui::~Gui()
     delete mp_filehandler_factory;
 }
 
+
+void Gui::switch_to_meta_ctx() {
+    this->cb_context->setCurrentIndex(1);
+}
+
 void Gui::on_red_clicked()
 {
     this->setStyleSheet("QMainWindow {background: rgb(239, 51, 49);}");
@@ -66,6 +71,10 @@ void Gui::on_blue_clicked()
 
 void Gui::on_execute_clicked() {
     auto script = editor->toPlainText();
+    execute(script);
+}
+
+void Gui::execute(const QString& content) {
     auto idx = this->cb_context->currentIndex();
     this->output->clear();
     this->output->appendPlainText( "--- Start script --- ");
@@ -74,13 +83,13 @@ void Gui::on_execute_clicked() {
     if( idx == 0 ) {
         auto ctx = PythonQt::self()->createUniqueModule();
         ctx.addObject("gui", mp_pygui );
-        ctx.evalScript(script);
+        ctx.evalScript(content);
     }
     else if( idx == 1 ) {
         auto ctx = PythonQt::self()->createUniqueModule();
         ctx.addObject("gui", mp_pygui );
         ctx.addObject("meta", mp_meta );
-        ctx.evalScript(script);
+        ctx.evalScript(content);
     }
     this->output->appendPlainText( "--- Finished --- ");
 }

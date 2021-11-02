@@ -12,6 +12,7 @@ public slots:
     void red() const;
     void green() const;
     void blue() const;
+    void create_file(const QString& filename);
 private:
     Gui* mp_GUI;
 };
