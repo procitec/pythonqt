@@ -6,7 +6,7 @@ isEmpty( PYTHON_VERSION ) {
   PYTHON_VERSION=$$(PYTHON_VERSION)
 }
 isEmpty( PYTHON_VERSION ) {
-  win32:PYTHON_VERSION=27
+  win32:PYTHON_VERSION=310
   unix:PYTHON_VERSION=3.9
 }
 
@@ -45,7 +45,8 @@ macx {
     DEBUG_EXT = 
   }
 
-  win32:INCLUDEPATH += $$(PYTHON_PATH)/PC $$(PYTHON_PATH)/include
+  message("Python path: $$(PYTHON_PATH)")
+  win32:INCLUDEPATH += $$(PYTHON_PATH)/PC $$(PYTHON_PATH)/include $$(PYTHON_PATH)/include/cpython
   win32:LIBS += $$(PYTHON_LIB)/python$${PYTHON_VERSION}$${DEBUG_EXT}.lib
 } else:unix {
   # on linux, python-config is used to autodetect Python.

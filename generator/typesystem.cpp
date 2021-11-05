@@ -222,7 +222,7 @@ bool XMLParser::parse()
                 return importFileElement(atts);
             }
 
-            std::auto_ptr<StackElement> element(new StackElement(current));
+            std::unique_ptr<StackElement> element(new StackElement(current));
 
             if (!tagNames.contains(tagName)) {
                 m_error = QString("Unknown tag name: '%1'").arg(tagName);
