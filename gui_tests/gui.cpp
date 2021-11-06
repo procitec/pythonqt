@@ -43,7 +43,6 @@ Gui::~Gui()
 {
     delete mp_pygui;
     delete mp_meta;
-    delete mp_filehandler_factory;
 }
 
 

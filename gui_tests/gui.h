@@ -30,5 +30,4 @@ public slots:
 private:
     PyGUI* mp_pygui;
     PyMeta* mp_meta;
-    FileHandlerFactory* mp_filehandler_factory;
 };
