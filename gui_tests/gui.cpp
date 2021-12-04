@@ -14,6 +14,7 @@ Gui::Gui()
     PythonQt::init(PythonQt::IgnoreSiteModule | PythonQt::RedirectStdOut);
     qRegisterMetaType<FileHandler>("FileHandler");
     qRegisterMetaType<FileDec>("FileDec");
+    qRegisterMetaType<MyRegister>("MyRegister");
     PythonQt::self()->addWrapperFactory(new FileHandlerFactory());
     PythonQt::self()->registerCPPClass("FileHandler");
     PythonQt::self()->registerCPPClass("FileDec", "","example", PythonQtCreateObject<FileDecWrapper>);

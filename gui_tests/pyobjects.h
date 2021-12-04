@@ -2,7 +2,11 @@
 
 #include "gui.h"
 
+struct MyRegister
+{
 
+};
+   
 /*
 This file defines two Objects: PyGUI and PyMeta.
 These are used in different contexts by the GUI.
@@ -19,6 +23,7 @@ public slots:
     void green() const;
     void blue() const;
     void create_file(const QString& filename);
+    MyRegister getRegister() { return MyRegister(); }
 private:
     Gui* mp_GUI;
 };

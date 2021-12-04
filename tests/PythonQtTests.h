@@ -304,6 +304,7 @@ public:
   PQUnknownButRegisteredValueObject() {};
 };
 
+
 //! test the calling of Q_SLOTS
 class PythonQtTestSlotCalling : public QObject
 {
@@ -334,6 +335,7 @@ class PythonQtTestSlotCallingHelper : public QObject
   Q_OBJECT
 public:
   PythonQtTestSlotCallingHelper(PythonQtTestSlotCalling* test) {
+    qRegisterMetaType<PQUnknownButRegisteredValueObject>("PQUnknownButRegisteredValueObject");
     _test = test;
     _qObjectProp = NULL;
   };
@@ -497,7 +499,7 @@ public Q_SLOTS:
   //! get a return by value PQCppObjectNoWrap
   PQCppObjectNoWrap getPQCppObjectNoWrapAsValue() { _called = true; return PQCppObjectNoWrap(47); }
   
-  PQUnknownButRegisteredValueObject getUnknownButRegisteredValueObjectAsValue() { _called = true; return PQUnknownButRegisteredValueObject(); }
+  PQUnknownButRegisteredValueObject getUnknownButRegisteredValueObjectAsValue() { _called = true; return mUnknownButRegisteredValueObject; }
   PQUnknownValueObject              getUnknownValueObjectAsValue() { _called = true; return PQUnknownValueObject(); }
 
   PQUnknownButRegisteredValueObject* getUnknownButRegisteredValueObjectAsPtr() { _called = true; return new PQUnknownButRegisteredValueObject(); }
@@ -523,6 +525,7 @@ public Q_SLOTS:
   QCursor setAutoConvertCursor(const QCursor& cursor) { _called = true; return cursor; }
   
 private:
+  PQUnknownButRegisteredValueObject mUnknownButRegisteredValueObject;
   bool _passed;
   mutable bool _called;
   int  _calledOverload;

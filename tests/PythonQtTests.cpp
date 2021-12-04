@@ -211,9 +211,9 @@ void PythonQtTestSlotCalling::testCppFactory()
   
   QVERIFY(_helper->runScript("if obj.getPQCppObjectNoWrapAsValue().getH()==47: obj.setPassed();\n"));
   
-  qRegisterMetaType<PQUnknownButRegisteredValueObject>("PQUnknownButRegisteredValueObject");
   QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsPtr();print(a);\nif a!=None: obj.setPassed();\n"));
-  QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsValue();print(a);\nif a!=None: obj.setPassed();\n"));
+  QVERIFY(_helper->runScript("a = obj.getUnknownButRegisteredValueObjectAsValue();print(a); \nif a != None: obj.setPassed(); \n"));
+
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsPtr();print(a);\nif a!=None: obj.setPassed();\n"));
   QEXPECT_FAIL("", "Testing by value return without the object being registered as QMetaType or having registered a default constructor decorator", Continue);
   QVERIFY(_helper->runScript("a = obj.getUnknownValueObjectAsValue();print(a);\nif a!=None: obj.setPassed();\n"));
