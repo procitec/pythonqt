@@ -2,6 +2,12 @@
 
 #include "gui.h"
 
+
+/*
+This file defines two Objects: PyGUI and PyMeta.
+These are used in different contexts by the GUI.
+*/
+
 class PyGUI: public QObject
 {
     Q_OBJECT

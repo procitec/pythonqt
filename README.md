@@ -32,6 +32,7 @@ or you want to upgrade/downgrade to another Qt version, but this requires
 updating the typesystems as well.
 
 # Building
+You need Qt6 to compile PythonQt. Otherwise you will get an error message while calling qmake.
 
 ## Building on Windows with MinGW
 
@@ -47,3 +48,23 @@ set PYTHON_PATH = c:\Python38
 set PYTHON_LIB  = c:\Python38\libs
 set PYTHON_VERSION = 38
 ```
+
+## Building on Unix
+Set your environment variable PATH to your qt6 build directory (e.g. qt6-build/qtbase/bin).
+```bash
+PATH=~/qt6-build/qtbase/bin:$PATH 
+qmake .
+make -j
+```
+
+# Tests
+Running unittests on unix:
+```bash
+cd lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
+./PythonQtTest
+```
+
+### GuiTests
+See `gui_tests/README.md`
+

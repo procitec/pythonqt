@@ -101,7 +101,7 @@ void Gui::on_context_changed(const QString& text) {
        description.append("gui.red()\n");
        description.append("gui.green()\n");
        description.append("gui.blue()\n\n");
-       description.append("f = meta.create_filehandle(filename)\n\n");
+       description.append("f = gui.create_file(filename)\n\n");
        description.append("from PythonQt.example import FileDec\n");
        description.append("fd = FileDec(\"test.txt\")\n");
        this->ctx_description->appendPlainText(description);

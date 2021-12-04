@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QFile>
 
+/* Define a FileDec and add a DecWrapper for this new type */
+
 class FileDec {
 public:
     FileDec(const QString filename): mFile(filename) {}

@@ -2,6 +2,8 @@
 
 #include <QFile>
 
+/* This is created by the FileHandlerFactory in FileCreatorWrapper */
+
 class FileHandler
 {
 public:

@@ -1,6 +1,6 @@
 ## Readme
 
-GUITest is a test application which we show different use cases of PythonQt:
+GUITest is a test application which demonstrates different use cases of PythonQt:
 1) Show the usage of contexts 
 2) Add objects to contexts
 3) Show the usage of cpp class wrappers
@@ -10,7 +10,7 @@ GUITest is a test application which we show different use cases of PythonQt:
 The test application has two contexts available.
 - Context `Ctx GUI`: This context provides an object `gui` which can control the graphical user interface,
 in particular change the color of the gui by using the buttons 'red, blue and green'.
-- Context `Ctx GUI + meta`: This context also has access to the `gui` object.
+- Context `Ctx GUI + meta`: This context does also have access to the `gui` object as `Ctx GUI`.
 Additionally, it provides access to the `meta object`. The `meta object` can reset the gui color (`reset_color`), 
 can clear the output (`clear_output`) and can create a `FileHandler` object with `create_file()`, which represents a file access.
 
@@ -23,15 +23,15 @@ can clear the output (`clear_output`) and can create a `FileHandler` object with
 ### `meta object`
 - `meta.clear_output()`: Clears the output
 - `meta.reset_color()`: Resets the gui color
-- `meta.create_filehandle(filename)`: Creates a FileWrapper of passed filename
+- `meta.create_filehandle(filename)`: Creates a FileHandle instance of passed filename
 
 ### `FileHandle` class
-This class represents a file handle. With this, `PythonQtCppWrapperFactory` and insertion of user types is tested. 
+This class represents a file handle. With this, `PythonQtCppWrapperFactory` and insertion of user types are tested. 
 - `var_name.create_file()`: Creates the file in the file system. The content of the file is the current date.
 - `var_name.delete_file()`: Deletes the file
 - `var_name.file_exists()`: Returns true if the file exists, false otherwise
 - 
-### `FileHandle` Decorator class
+### `FileDec`: An inserted Decorator class
 Instanciate a new type FileDec directly (not by a WrapperFactory).
 Therefore the type must be imported:
 ```
@@ -48,7 +48,7 @@ Copy the `test.py` file to your binary directory and call `GuiTest` with the fil
 $ ./GuiTest test.py
 Auto test enabled by passing a file test.py
 ```
-You will see a message, that the content of the file is automatically passed to the interpreter.
+You will see a message that the content of the file is automatically passed to the interpreter.
 The output of the unittest is shown in the output window of the gui.
 
 Pay attention: Because the unittests makes intensive use of contexts, added objects, classes and class decorators
