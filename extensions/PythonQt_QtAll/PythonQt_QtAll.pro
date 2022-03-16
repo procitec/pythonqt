@@ -60,6 +60,13 @@ headers.path = /include
 
 INSTALLS += target headers
 
+PythonQtRPathOrigin {
+  unix {
+    # adding $ORIGIN to rpath
+    QMAKE_RPATHDIR += $ORIGIN
+  }
+}
+
 PythonQtCore {
   DEFINES += PYTHONQT_WITH_CORE
   include ($$PYTHONQT_GENERATED_PATH/com_trolltech_qt_core/com_trolltech_qt_core.pri)
