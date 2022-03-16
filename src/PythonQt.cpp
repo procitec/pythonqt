@@ -1542,7 +1542,7 @@ void PythonQtPrivate::setupSharedLibrarySuffixes()
   // First look for shared libraries with the '_d' suffix in debug mode on Linux.
   // This is a workaround, because python does not append the '_d' suffix on Linux
   // and would always load the release library otherwise.
-  _sharedLibrarySuffixes << "_d.so";
+  //_sharedLibrarySuffixes << "_d.so";
   #endif
 #endif
   Q_FOREACH (QVariant entry, result.toList()) {
