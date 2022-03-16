@@ -70,6 +70,13 @@ headers.path = $${INSTALL_PREFIX}/include
 
 INSTALLS += target headers
 
+PythonQtRPathOrigin {
+  unix {
+    # adding $ORIGIN to rpath
+    QMAKE_RPATHDIR += $ORIGIN
+  }
+}
+
 defineTest(Xinclude) {
   f=$$PYTHONQT_GENERATED_PATH/$$1/$${1}.pri
   exists($$f):include($$f):export(HEADERS):export(SOURCES):export(DEFINES)
