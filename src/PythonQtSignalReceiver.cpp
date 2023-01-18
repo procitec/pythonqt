@@ -45,7 +45,7 @@
 #include "PythonQtConversion.h"
 #include <QMetaObject>
 #include <QMetaMethod>
-#include "funcobject.h"
+// #include "funcobject.h"
 
 // use -2 to signal that the variable is uninitialized
 int PythonQtSignalReceiver::_destroyedSignal1Id = -2;
@@ -279,4 +279,3 @@ int PythonQtSignalReceiver::qt_metacall(QMetaObject::Call c, int id, void **argu
   }
   return 0;
 }
-
