@@ -43,6 +43,7 @@
 #define PP_INTERNAL_H
 
 #include <algorithm>
+#include <functional>
 #include <stdio.h>
 
 namespace rpp {
@@ -98,19 +99,19 @@ inline bool comment_p (InputIterator _first, InputIterator _last) /*const*/
   return (*_first == '/' || *_first == '*');
 }
 
-struct _Compare_string: public std::binary_function<bool, pp_fast_string const *, pp_fast_string const *>
+struct _Compare_string: public std::function<bool(pp_fast_string const *, pp_fast_string const *)>
 {
   inline bool operator () (pp_fast_string const *__lhs, pp_fast_string const *__rhs) const
   { return *__lhs < *__rhs; }
 };
 
-struct _Equal_to_string: public std::binary_function<bool, pp_fast_string const *, pp_fast_string const *>
+struct _Equal_to_string: public std::function<bool(pp_fast_string const *, pp_fast_string const *)>
 {
   inline bool operator () (pp_fast_string const *__lhs, pp_fast_string const *__rhs) const
   { return *__lhs == *__rhs; }
 };
 
-struct _Hash_string: public std::unary_function<std::size_t, pp_fast_string const *>
+struct _Hash_string: public std::function<std::size_t(pp_fast_string const *)>
 {
   inline std::size_t operator () (pp_fast_string const *__s) const
   {
