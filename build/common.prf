@@ -58,7 +58,7 @@ PYTHONQT_GENERATED_PATH = $$PWD/../generated_cpp
   message("Using generated sources files from $${PYTHONQT_GENERATED_PATH}")
 }
 
-VERSION = 3.2.0
+VERSION = 3.5.6
 win32: CONFIG += skip_target_version_ext
 gcc|win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Wuninitialized -Winit-self -pedantic
 win32-clang-msvc:QMAKE_CXXFLAGS += -Wno-unused-command-line-argument
